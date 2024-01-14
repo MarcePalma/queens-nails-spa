@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import { Inter } from 'next/font/google'
 import Navbar from '@/components/navigation/Navbar'
 import Postscard from '@/components/posts/postscard'
