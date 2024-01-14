@@ -26,20 +26,27 @@ const motionForce = (x: number, y: number): ParticleForce => {
 };
 
 export default function InteractiveNail() {
-  const { innerWidth, innerHeight } = useWindowSize();
+  try {
+    const { innerWidth, innerHeight } = useWindowSize();
 
-  return (
-    <ParticleImage
-      src={"/images/nail-particle.png"}
-      width={Number(innerWidth)}
-      height={Number(innerHeight)}
-      scale={0.75}
-      entropy={20}
-      maxParticles={4000}
-      particleOptions={particleOptions}
-      mouseMoveForce={motionForce}
-      touchMoveForce={motionForce}
-      backgroundColor="#121212"
-    />
-  );
+    return (
+      <ParticleImage
+        className="max-w-screen"
+        src={"/images/nail-particle.png"}
+        width={Number(innerWidth)}
+        height={Number(innerHeight)}
+        scale={0.50}
+        entropy={20}
+        maxParticles={2000}
+        particleOptions={particleOptions}
+        mouseMoveForce={motionForce}
+        touchMoveForce={motionForce}
+        backgroundColor="#121212"
+      />
+    );
+  } catch (error) {
+    console.error("Error in InteractiveNail component:", error);
+    // Puedes manejar el error de manera apropiada, por ejemplo, mostrando un mensaje alternativo o realizando alguna acción específica.
+    return <div>Error al cargar el componente.</div>;
+  }
 }

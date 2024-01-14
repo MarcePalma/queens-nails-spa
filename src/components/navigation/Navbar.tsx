@@ -14,11 +14,11 @@ export default function Navbar() {
 
   const navLinks = [
     {
-      title: `Turnos`,
+      title: `TURNOS`,
       path: '/turnos',
     },
     {
-      title: `Foro`,
+      title: `FORO`,
       path: '/publicaciones',
     },
   ];

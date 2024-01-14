@@ -2,8 +2,8 @@ import React from 'react'
 import NavLink from './NavLink'
 
 const links = [
-  { path: '/turnos', title: 'Turnos' },
-  { path: '/publicaciones', title: 'Foro' },
+  { path: '/turnos', title: 'TURNOS' },
+  { path: '/publicaciones', title: 'FORO' },
   { path: '#contact', title: 'Contacto' },
 ];
 
