@@ -4,7 +4,7 @@ import Image from 'next/image'
 
 export default function Postscard() {
     return (
-        <div className="max-w-screen-lg mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-4 top-11">
+        <div className="max-w-screen-lg mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-4 top-11 bg-[#121212]">
             <Link href="#" className="group relative block bg-black">
                 <Image
                     width={1000}
