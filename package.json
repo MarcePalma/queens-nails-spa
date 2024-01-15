@@ -12,8 +12,11 @@
     "@heroicons/react": "^2.1.1",
     "@prisma/client": "^5.8.0",
     "@rooks/use-window-size": "^4.11.2",
+    "date-fns": "^3.2.0",
+    "framer-motion": "^10.18.0",
     "next": "14.0.4",
     "react": "^18",
+    "react-calendar": "^4.8.0",
     "react-dom": "^18",
     "react-particle-image": "^1.0.2",
     "rooks": "^7.14.1"
