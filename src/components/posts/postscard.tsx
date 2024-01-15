@@ -3,12 +3,8 @@ import ManicuraCard from './Card/ManicuraCard';
 import PedicuraCard from './Card/PedicuraCard';
 import { Post } from '@/types/types';
 
-interface PostscardProps extends Post {
-    category: string;
-    image: string;
-}
 
-const Postscard: React.FC<PostscardProps> = (props) => {
+const Postscard: React.FC<Post> = (props) => {
     const { category, image, ...rest } = props;
 
     return (

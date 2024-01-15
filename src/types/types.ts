@@ -12,4 +12,6 @@ export interface Post {
     title: string;
     content: string;
     date: string;
+    image: string;
+    category: 'manicura' | 'pedicura';
   }

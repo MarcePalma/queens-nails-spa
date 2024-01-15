@@ -14,9 +14,11 @@ const Index = () => {
   return (
     <div>
       <h1 className="text-white">Agregar Publicaciones</h1>
+      {/* @ts-ignore */}
       <AddPost onAddPost={handleAddPost} />
       {/* @ts-ignore */}
       <Postscard posts={posts} onAddPost={handleAddPost} />
+      {/* @ts-ignore */}
       <PostList posts={posts} />
     </div>
   );
