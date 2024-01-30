@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 
@@ -9,38 +9,15 @@ interface ManicuraCardProps {
 }
 
 const ManicuraCard: React.FC<ManicuraCardProps> = ({ title, content, image }) => {
-    const [imageURL, setImageURL] = useState<string | undefined>(undefined);
-
-    useEffect(() => {
-        if (image) {
-            const blob = dataURItoBlob(image);
-            const url = URL.createObjectURL(blob);
-
-            setImageURL(url);
-        }
-    }, [image]);
-
-    const dataURItoBlob = (dataURI: string): Blob => {
-        const byteString = atob(dataURI.split(',')[1]);
-        const arrayBuffer = new ArrayBuffer(byteString.length);
-        const int8Array = new Uint8Array(arrayBuffer);
-
-        for (let i = 0; i < byteString.length; i++) {
-            int8Array[i] = byteString.charCodeAt(i);
-        }
-
-        return new Blob([int8Array], { type: 'image/png' });
-    };
-
     return (
         <section className='max-w-screen-lg mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-4 top-11 bg-[#121212]'>
-            {imageURL && (
+            {image && (
                 <Link href="#" className="group relative block bg-black">
                     <Image
                         width={200}
                         height={200}
                         alt={title}
-                        src={imageURL}
+                        src={image}
                         className="absolute inset-0 h-full w-full object-cover opacity-75 transition-opacity group-hover:opacity-50"
                     />
 

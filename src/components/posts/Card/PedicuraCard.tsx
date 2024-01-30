@@ -13,28 +13,9 @@ const PedicuraCard: React.FC<PedicuraCardProps> = ({ title, content, image }) =>
 
     useEffect(() => {
         if (image) {
-            // Convierte la imagen base64 a Blob
-            const blob = dataURItoBlob(image);
-            
-            // Crea una URL para el Blob
-            const url = URL.createObjectURL(blob);
-
-            // Establece la URL en el estado
-            setImageURL(url);
+            setImageURL(image);
         }
     }, [image]);
-
-    const dataURItoBlob = (dataURI: string): Blob => {
-        const byteString = atob(dataURI.split(',')[1]);
-        const arrayBuffer = new ArrayBuffer(byteString.length);
-        const int8Array = new Uint8Array(arrayBuffer);
-
-        for (let i = 0; i < byteString.length; i++) {
-            int8Array[i] = byteString.charCodeAt(i);
-        }
-
-        return new Blob([int8Array], { type: 'image/png' });
-    };
 
     return (
         <section className='max-w-screen-lg mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-4 top-11 bg-[#121212]'>
