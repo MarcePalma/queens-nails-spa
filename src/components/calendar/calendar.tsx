@@ -65,6 +65,11 @@ const Calendar: React.FC<CalendarProps> = () => {
 
   return (
     <div className="calendar">
+      <h1 className="text-white mb-4 text-4xl sm:text-5xl lg:text-4xl lg:leading-normal font-extrabold">
+        <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-pink-600 z-10">
+          Selecciona un dia!
+        </span>
+      </h1>
       {Array.from({ length: 2 }).map((_, index) => {
         const month = addMonths(currentDate, index);
         const monthDates = getMonthDates(month);
@@ -109,7 +114,7 @@ const Calendar: React.FC<CalendarProps> = () => {
 
         .month {
           text-align: left;
-          color: white;
+          color: #E91E63;
           margin-bottom: 1rem;
         }
 
@@ -126,8 +131,8 @@ const Calendar: React.FC<CalendarProps> = () => {
           display: inline-block;
           cursor: pointer;
           border-radius: 10%;
-          background-color: white;
-          color: black;
+          background-color: #E91E63;
+          color: white;
         }
 
         .selected {
@@ -136,7 +141,8 @@ const Calendar: React.FC<CalendarProps> = () => {
         }
 
         .time-dropdown {
-          color:#000;
+          border-color:black;
+          color:#E91E63;
           margin-top: 1rem;
         }
 

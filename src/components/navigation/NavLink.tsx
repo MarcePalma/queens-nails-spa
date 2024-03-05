@@ -4,7 +4,7 @@ import { NavLinkProps } from '@/types/types';
 
 const NavLink: React.FC<NavLinkProps> = ({ href, title }) => {
   return (
-    <a href={href} title={title} className="text-white font-semibold">
+    <a href={href} title={title} className="text-pink-500 font-semibold">
       {title}
     </a>
   );
