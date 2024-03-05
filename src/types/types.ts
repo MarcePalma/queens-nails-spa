@@ -8,10 +8,10 @@ export interface MenuOverlayProps {
 }
 
 export interface Post {
-    id: string;
+    id: number;
     title: string;
     content: string;
-    date: string;
+    date: Date;
     image: string;
-    category: 'manicura' | 'pedicura';
-  }
+    category: string;
+}
