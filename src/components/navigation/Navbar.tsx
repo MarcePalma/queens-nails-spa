@@ -1,4 +1,4 @@
-'use client';
+'use-client'
 import React from 'react';
 import Link from 'next/link';
 import NavLink from './NavLink.tsx';
@@ -29,23 +29,23 @@ export default function Navbar() {
         <Link href={'/'} className="text-2xl md:text-5xl text-white font-semibold flex items-center justify-center">
           <Image className="mx-auto" width={70} height={70} src="/images/logo.webp" alt="Logo" />
         </Link>
-        <Link href={"/"}>
+        <Link href={"/"} className='flex'>
+          <Image src={"/images/emoji-nails.gif"} width={150} height={30} alt='Emoji Nails spa' />
           <Image className='items-center' width={200} height={200} src="/images/queens-nails-spa.gif" alt='Queens Nails Spa' />
         </Link>
-
 
         <div className="mobile-menu block md:hidden">
           {!navbarOpen ? (
             <button
               onClick={() => setNavbarOpen(true)}
-              className="flex items-center px-3 py-2 border rounded border-slate-200 text-slate-200 hover:text-white hover:border-white"
+              className="flex items-center px-3 py-2 border rounded border-slate-200 text-slate-200 hover:text-pink-500 hover:border-white"
             >
               <Bars3Icon className="h-5 w-5" />
             </button>
           ) : (
             <button
               onClick={() => setNavbarOpen(false)}
-              className="flex items-center px-3 py-2 border rounded border-slate-200 text-slate-200 hover:text-white hover:border-white"
+              className="flex items-center px-3 py-2 border rounded border-slate-200 text-slate-200 hover:text-pink-500 hover:border-white"
             >
               <XMarkIcon className="h-5 w-5" />
             </button>
