@@ -1,10 +1,10 @@
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient, Post } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
 export const getPosts = async () => {
     try {
-        const posts = await prisma.post.findMany();
+        const posts: Post[] = await prisma.post.findMany();
 
         const manicuraPosts = posts
             .filter((post) => post.category === 'manicura')
