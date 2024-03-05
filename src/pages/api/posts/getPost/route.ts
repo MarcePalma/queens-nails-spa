@@ -1,4 +1,6 @@
-import { PrismaClient, Post } from '@prisma/client';
+import { PrismaClient } from '@prisma/client';
+
+import type { Appointment, Post } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
