@@ -31,7 +31,7 @@ export default function Navbar() {
         </Link>
         <Link href={"/"} className='flex'>
           <Image src={"/images/emoji-nails.gif"} width={150} height={30} alt='Emoji Nails spa' />
-          <Image className='items-center' width={200} height={200} src="/images/queens-nails-spa.gif" alt='Queens Nails Spa' />
+          <Image className='hidden lg:block items-center' width={200} height={200} src="/images/queens-nails-spa.gif" alt='Queens Nails Spa' />
         </Link>
 
         <div className="mobile-menu block md:hidden">
