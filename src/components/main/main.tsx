@@ -8,11 +8,16 @@ export default function Main() {
     <section className='py-24'>
       <div className="mx-auto w-screen px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
         <header className="text-center">
-          <h1 className="text-white mb-4 text-4xl sm:text-5xl lg:text-4xl lg:leading-normal font-extrabold">
+        <h1 className="text-white mb-4 text-4xl sm:text-5xl lg:text-4xl lg:leading-normal font-extrabold">
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-pink-600 z-10">
               CONOCE NUESTROS SERVICIOS
             </span>
           </h1>
+          <p className="mx-auto mt-4 max-w-md text-black font-semibold">
+            Somos un spa de Manos y Pies & Estetica totalmente pensado para el cuidado integral de la mujer.
+
+            Ofrecemos un espacio de relax y armonia con profesionales altamente capacitados con el objetivo de brindar un servicio diferenciado y de calidad.
+          </p>
         </header>
 
 
@@ -66,20 +71,6 @@ export default function Main() {
               </div>
             </a>
           </li>
-        </ul>
-        <ul className="mx-auto mt-4 max-w-md text-white">
-          <li>⚪Prevención y tratamiento de pie diabético.</li>
-          <li>⚪Hongos y enfermedades de la uña.</li>
-          <li>⚪Cauterizacion de lunares y verrugas.</li>
-          <li>⚪Uñas encarnadas.</li>
-          <li>⚪Hidratacion.</li>
-          <li>⚪Masaje podal.</li>
-          <li>⚪Callosidades.</li>
-          <li>⚪Reconstrucción de uñas.</li>
-          <li>⚪Pedicure preventivo.</li>
-          <li>⚪Pedicure estetico.</li>
-          <li>⚪Spa de pies.</li>
-          <li>⚪Terápia laser.</li>
         </ul>
       </div>
     </section>

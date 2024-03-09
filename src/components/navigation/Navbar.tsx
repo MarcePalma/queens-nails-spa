@@ -30,7 +30,7 @@ export default function Navbar() {
           <Image className="mx-auto" width={70} height={70} src="/images/logo.webp" alt="Logo" />
         </Link>
         <Link href={"/"} className='flex'>
-          <Image src={"/images/emoji-nails.gif"} width={150} height={30} alt='Emoji Nails spa' />
+          <Image src={"/images/babyfoot.gif"} width={100} height={100} alt='Emoji Nails spa' />
           <Image className='hidden lg:block items-center' width={200} height={200} src="/images/queens-nails-spa.gif" alt='Queens Nails Spa' />
         </Link>
 
@@ -53,6 +53,7 @@ export default function Navbar() {
         </div>
         <div className="menu hidden md:block md:w-auto" id="navbar">
           <ul className="flex p-4 md:p-0 md:flex-row md:space-x-8 mt-0">
+
             {navLinks.map((link, index) => (
               <li key={index}>
                 <NavLink href={link.path} title={link.title} />
