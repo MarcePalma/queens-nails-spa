@@ -29,3 +29,9 @@ model Post {
   date      DateTime @default(now())
   category  String
 }
+
+model Schedule {
+  id        Int      @id @default(autoincrement())
+  date      DateTime
+  time      String
+}

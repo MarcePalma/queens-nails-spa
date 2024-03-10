@@ -15,7 +15,7 @@ export default function Horarios() {
                                 </span>
                             </h1>
                             <p className="text-lg font-medium leadi">De Lunes a Sabados:</p>
-                            <p className="leadi">de 12:00 a 17:00</p>
+                            <p className="leadi">de 12:00 a 19:00</p>
                         </div>
                     </div>
                     <div className="flex space-x-2 sm:space-x-4">

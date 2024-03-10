@@ -15,3 +15,13 @@ export interface Post {
     image: string;
     category: string;
 }
+export interface Appointment {
+    name: string;
+    treatment: string;
+    date: Date | null;
+    status: 'pending' | 'confirmed' | 'cancelled';
+    createdAt: Date;
+    updatedAt: Date;
+    time: string;
+  }
+  

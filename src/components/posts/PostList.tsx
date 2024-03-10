@@ -1,6 +1,6 @@
 import React from "react";
-import ManicuraCard from "./Card/ManicuraCard"; // Asegúrate de importar ManicuraCard desde la ubicación correcta
-import PedicuraCard from "./Card/PedicuraCard"; // Importa PedicuraCard si es necesario
+import ManicuraCard from "./Card/ManicuraCard"; 
+import PedicuraCard from "./Card/PedicuraCard"; 
 import { Post } from "@/types/types";
 
 interface PostListProps {
