@@ -18,6 +18,34 @@ const Calendar: React.FC<CalendarProps> = () => {
   const [selectedAppointment, setSelectedAppointment] = useState<Appointment>({ date: null, time: null });
   const [availableTimes, setAvailableTimes] = useState<string[]>([]);
   const selectTimeRef = useRef<HTMLDivElement>(null);
+  const [scheduleData, setScheduleData] = useState<{ [date: string]: string[] }>({});
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch("/api/schedule/route");
+        if (!response.ok) {
+          throw new Error("Error al obtener los horarios");
+        }
+        const data = await response.json();
+
+        const formattedData = data.reduce((acc: { [date: string]: string[] }, appointment: { date: string; time: string }) => {
+          const dateKey = formatDateForBackend(appointment.date);
+          if (!acc[dateKey]) {
+            acc[dateKey] = [];
+          }
+          acc[dateKey].push(appointment.time);
+          return acc;
+        }, {});
+
+
+        setScheduleData(formattedData);
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    };
+    fetchData();
+  }, []);
 
   const getMonthDates = (month: Date): Date[] => {
     const start = startOfMonth(month);
@@ -42,10 +70,19 @@ const Calendar: React.FC<CalendarProps> = () => {
     return `${day}/${month} (${dayOfWeek})`;
   };
 
+  const formatDateForBackend = (dateString: string): string => {
+    const date = new Date(dateString);
+    const day = date.getDate();
+    const month = date.getMonth() + 1;
+    const year = date.getFullYear();
+
+    return `${year}-${month < 10 ? '0' + month : month}-${day < 10 ? '0' + day : day}`;
+  };
+
   const handleDateClick = (date: Date) => {
     setSelectedAppointment(prevAppointment => ({ ...prevAppointment, date }));
-    const mockAvailableTimes = ["10:00 AM", "11:00 AM", "12:00 PM", "3:00 PM"];
-    setAvailableTimes(mockAvailableTimes);
+    const times = scheduleData[format(date, "yyyy-MM-dd")];
+    setAvailableTimes(times || []);
     if (selectTimeRef.current) {
       selectTimeRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
@@ -67,7 +104,7 @@ const Calendar: React.FC<CalendarProps> = () => {
     <div className="calendar">
       <h1 className="text-white mb-4 text-4xl sm:text-5xl lg:text-4xl lg:leading-normal font-extrabold">
         <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-pink-600 z-10">
-          Selecciona un dia!
+          Selecciona un día!
         </span>
       </h1>
       {Array.from({ length: 2 }).map((_, index) => {
@@ -91,7 +128,7 @@ const Calendar: React.FC<CalendarProps> = () => {
           </div>
         );
       })}
-      {availableTimes.length > 0 && (
+      {availableTimes.length > 0 ? (
         <div ref={selectTimeRef} className="time-dropdown">
           <select onChange={(e) => handleTimeSelect(e.target.value)}>
             <option value="">Seleccione un horario</option>
@@ -100,9 +137,11 @@ const Calendar: React.FC<CalendarProps> = () => {
             ))}
           </select>
         </div>
+      ) : (
+        <p>No hay horarios disponibles para esta fecha.</p>
       )}
       {isAppointmentSelected && (
-        <button className="checkout-button" onClick={handleCheckout}>Checkout</button>
+        <button className="checkout-button" onClick={handleCheckout}>Pagar</button>
       )}
       <style jsx>{`
         .calendar {

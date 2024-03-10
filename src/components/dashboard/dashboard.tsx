@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import AddAppointmentForm from './addAppointmentsForm';
 import Schedule from './schedule';
+import Agenda from './agenda';
 
 export default function Dashboard() {
     const [selectedDate, setSelectedDate] = useState<Date | null>(null);
@@ -10,6 +11,11 @@ export default function Dashboard() {
     const [showError, setShowError] = useState(false);
     const [showForm, setShowForm] = useState(false)
     const [showSchedule, setShowSchedule] = useState(false)
+    const [showAgenda, setShowAgenda] = useState(false)
+
+    const handleToggleAgenda = () => {
+        setShowAgenda(!showAgenda)
+    }
 
     const handleToggleSchedule = () => {
         setShowSchedule(!showSchedule)
@@ -96,6 +102,14 @@ export default function Dashboard() {
                             Ver Horarios
                         </button>
                     </li>
+                    <li>
+                        <button
+                            onClick={handleToggleAgenda}
+                            className="block rounded-lg px-4 py-2 text-sm font-medium text-pink-500 hover:bg-gray-100 hover:text-gray-700"
+                        >
+                            Agendar una Cita
+                        </button>
+                    </li>
                 </ul>
             </div>
             <div>
@@ -155,6 +169,11 @@ export default function Dashboard() {
                 {
                     showSchedule && (
                         <Schedule />
+                    )
+                }
+                {
+                    showAgenda &&(
+                        <Agenda/>
                     )
                 }
             </div>
