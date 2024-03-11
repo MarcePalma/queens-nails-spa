@@ -14,9 +14,7 @@ export default function Main() {
             </span>
           </h1>
           <p className="mx-auto mt-4 max-w-md text-black font-semibold">
-            Somos un spa de Manos y Pies & Estetica totalmente pensado para el cuidado integral de la mujer.
-
-            Ofrecemos un espacio de relax y armonia con profesionales altamente capacitados con el objetivo de brindar un servicio diferenciado y de calidad.
+          Somos un centro especializado en Estética de Manos, Pies y Quiropedia, dedicado al cuidado integral de las personas. Nuestro objetivo es ofrecer un ambiente de salud podal y belleza, donde hombres y mujeres puedan disfrutar de servicios diferenciados y de alta calidad.
           </p>
         </header>
 
