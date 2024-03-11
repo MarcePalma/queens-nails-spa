@@ -1,96 +1,90 @@
 import React, { useState } from "react";
 
-interface AddPostProps {
-  onAddPost: (newPost: {
-    id: string;
-    title: string;
-    content: string;
-    date: string;
-    image: string;
-    category: string;
-  }) => void;
-}
-
-const AddPost: React.FC<AddPostProps> = ({ onAddPost }) => {
+const AddPost = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const [image, setImage] = useState<File | null>(null);
-  const [category, setCategory] = useState("manicura");
+  const [image, setImage] = useState<string>("");
+  const [category, setCategory] = useState("");
 
   const handleAddPost = async () => {
-    if (title && content && image) {
-      const formData = new FormData();
-      formData.append("title", title);
-      formData.append("content", content);
-      formData.append("image", image);
-      formData.append("category", category);
+    // Verificar que los campos obligatorios no estén vacíos
+    if (!title || !content || !image || !category) {
+      console.error("Los campos obligatorios no pueden estar vacíos");
+      return;
+    }
 
-      try {
-        const response = await fetch("/api/posts/createPost/route", {
-          method: "POST",
-          body: formData,
-        });
-        if (!response.ok) {
-          throw new Error("Error creating post");
-        }
-        const newPostData = await response.json();
-        onAddPost(newPostData);
-        setTitle("");
-        setContent("");
-        setImage(null);
-        setCategory("manicura");
-      } catch (error) {
-        console.error("Error creating post:", error);
+    const postData = {
+      title: title,
+      content: content,
+      image: image,
+      category: category
+    };
+
+    try {
+      const response = await fetch("/api/posts/create/route", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(postData)
+      });
+      if (!response.ok) {
+        throw new Error("Error creating post");
       }
+      const responseData = await response.json();
+      console.log("New post created:", responseData);
+      // Limpiar el formulario después de enviar los datos
+      setTitle("");
+      setContent("");
+      setImage("");
+      setCategory("");
+    } catch (error) {
+      console.error("Error creating post:", error);
     }
   };
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const files = e.target.files;
-    if (files && files.length > 0) {
-      setImage(files[0]);
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onloadend = () => {
+        if (typeof reader.result === 'string') {
+          setImage(reader.result);
+        }
+      };
     }
   };
 
   return (
-    <div className="add-post text-white p-4 bg-[#121212]">
-      <h2 className="text-xl mb-2">Add New Post</h2>
+    <div>
+      <h2>Add New Post</h2>
       <input
         type="text"
         placeholder="Title"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
-        className="bg-[#303030] text-white p-2 mb-2"
       />
       <textarea
         placeholder="Content"
         value={content}
         onChange={(e) => setContent(e.target.value)}
-        className="bg-[#303030] text-white p-2 mb-2"
       />
       <input
         type="file"
         accept="image/*"
         onChange={handleImageChange}
-        className="mb-2"
       />
-      <label className="mb-2">
-        Category:
-        <select
-          value={category}
-          onChange={(e) => setCategory(e.target.value)}
-          className="bg-[#303030] text-white p-2"
-        >
-          <option value="manicura">Manicura</option>
-          <option value="pedicura">Pedicura</option>
-        </select>
-      </label>
-      <button
-        onClick={handleAddPost}
-        className="bg-blue-500 text-white py-2 px-4 rounded"
+      <select
+        value={category}
+        onChange={(e) => setCategory(e.target.value)}
       >
-        Add Post
-      </button>
+        <option value="">Select Category</option>
+        <option value="manicura">Manicura</option>
+        <option value="pedicura">Pedicura</option>
+        <option value="quiropedia">Quiropedia</option>
+      </select>
+      <button onClick={handleAddPost}>Add Post</button>
     </div>
   );
 };

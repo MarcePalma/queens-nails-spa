@@ -11,10 +11,10 @@ export interface Post {
     id: number;
     title: string;
     content: string;
-    date: Date;
+    date: string;
     image: string;
     category: string;
-}
+  }
 export interface Appointment {
     name: string;
     treatment: string;

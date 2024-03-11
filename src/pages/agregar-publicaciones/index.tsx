@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import PostList from "@/components/posts/PostList";
+
 import AddPost from "@/components/posts/addPosts";
-import Postscard from "@/components/posts/postscard";
+import PostListForDashboard from "@/components/posts/PostListForDashboard";
 import { Post } from "@/types/types";
 
 const Index = () => {
@@ -16,10 +16,7 @@ const Index = () => {
       <h1 className="text-white">Agregar Publicaciones</h1>
       {/* @ts-ignore */}
       <AddPost onAddPost={handleAddPost} />
-      {/* @ts-ignore */}
-      <Postscard posts={posts} onAddPost={handleAddPost} />
-      {/* @ts-ignore */}
-      <PostList posts={posts} />
+      <PostListForDashboard />
     </div>
   );
 };
