@@ -57,36 +57,45 @@ const AddPost = () => {
   };
 
   return (
-    <div>
-      <h2>Add New Post</h2>
+    <div className="bg-pink-500 p-4 rounded-lg shadow-lg mx-auto max-w-md mt-20">
+      <h2 className="text-white text-lg mb-2">Agregar Publicaciones</h2>
       <input
         type="text"
         placeholder="Title"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
+        className="bg-white text-gray-800 px-3 py-2 rounded-md w-full mb-2 focus:outline-none focus:ring focus:border-blue-300"
       />
       <textarea
         placeholder="Content"
         value={content}
         onChange={(e) => setContent(e.target.value)}
+        className="bg-white text-gray-800 px-3 py-2 rounded-md w-full mb-2 focus:outline-none focus:ring focus:border-blue-300"
       />
       <input
         type="file"
         accept="image/*"
         onChange={handleImageChange}
+        className="bg-white text-gray-800 px-3 py-2 rounded-md w-full mb-2 focus:outline-none focus:ring focus:border-blue-300"
       />
       <select
         value={category}
         onChange={(e) => setCategory(e.target.value)}
+        className="bg-white text-gray-800 px-3 py-2 rounded-md w-full mb-2 focus:outline-none focus:ring focus:border-blue-300"
       >
         <option value="">Select Category</option>
         <option value="manicura">Manicura</option>
         <option value="pedicura">Pedicura</option>
         <option value="quiropedia">Quiropedia</option>
       </select>
-      <button onClick={handleAddPost}>Add Post</button>
+      <button
+        onClick={handleAddPost}
+        className="bg-white text-pink-500 px-4 py-2 rounded-md text-lg font-semibold focus:outline-none hover:bg-gray-200"
+      >
+        Agregar Publicacion
+      </button>
     </div>
-  );
-};
-
+  );;
+  
+}
 export default AddPost;

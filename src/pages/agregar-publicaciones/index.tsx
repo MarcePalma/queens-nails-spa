@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 
+import Navbar from "@/components/navigation/Navbar";
 import AddPost from "@/components/posts/addPosts";
 import PostListForDashboard from "@/components/posts/PostListForDashboard";
 import { Post } from "@/types/types";
@@ -12,7 +13,8 @@ const Index = () => {
   };
 
   return (
-    <div>
+    <div className="py-24">
+      <Navbar/>
       <h1 className="text-white">Agregar Publicaciones</h1>
       {/* @ts-ignore */}
       <AddPost onAddPost={handleAddPost} />

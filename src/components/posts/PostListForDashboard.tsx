@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Post } from "@/types/types";
+import Link from "next/link";
 
 const PostListForDashboard = () => {
   const [posts, setPosts] = useState<Post[]>([]);
@@ -39,18 +40,19 @@ const PostListForDashboard = () => {
   };
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 m-20">
+      <h2 className="text-center text-3xl font-bold mb-4 text-pink-400">Eliminar Publicaciones</h2>
       {posts.map((post) => (
-        <div key={post.id} className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+        <div key={post.id} className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-pink-400 dark:border-pink-700 mx-auto">
           <a href="#">
             <img className="rounded-t-lg" src={post.image} alt="" />
           </a>
-          <div className="p-5">
-            <a href="#">
-              <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{post.title}</h5>
-            </a>
-            <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">{post.content}</p>
-            <button onClick={() => deletePost(post.id)}>Delete</button>
+          <div className="p-5 text-center">
+            <Link href="#">
+              <h5 className="mb-2 text-2xl font-bold tracking-tight text-white">{post.title}</h5>
+            </Link>
+            <p className="mb-3 font-normal text-white">{post.content}</p>
+            <button className="bg-white text-pink-500 px-4 py-2 rounded-md text-lg font-semibold focus:outline-none hover:bg-gray-200" onClick={() => deletePost(post.id)}>ELIMINAR PUBLICACION</button>
           </div>
         </div>
       ))}
