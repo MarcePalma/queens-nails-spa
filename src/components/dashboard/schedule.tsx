@@ -63,16 +63,47 @@ export default function Schedule() {
 
                 <tbody className="divide-y divide-gray-200">
                     {sortedSchedules.map((schedule) => (
-                        <tr key={schedule.id}>
+                        <tr key={schedule.id} className='table-row'>
                             <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">{schedule.date}</td>
                             <td className="whitespace-nowrap px-4 py-2 text-gray-700">{schedule.time}</td>
                             <td className="whitespace-nowrap px-4 py-2 text-gray-700">
-                                <button onClick={() => handleDeleteSchedule(schedule.id)}>Eliminar</button>
+                                <button className='delete-button' onClick={() => handleDeleteSchedule(schedule.id)}>Eliminar</button>
                             </td>
                         </tr>
                     ))}
                 </tbody>
             </table>
+            <style jsx>{`
+            .delete-button {
+              background-color: #fff;
+              color: #E91E63;
+              padding: 6px 12px;
+              border: 1px solid #E91E63;
+              border-radius: 5px;
+              cursor: pointer;
+              font-weight: bold;
+              transition: background-color 0.3s, color 0.3s;
+            }
+    
+            .delete-button:hover {
+              background-color: #E91E63;
+              color: #fff;
+            }
+
+            .table-row {
+                width: 100%;
+                padding: 8px;
+                margin-bottom: 10px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                outline: none;
+                background-color: #fff;
+            }
+            
+            .table-row td {
+                padding: 8px;
+            }
+          `}</style>
         </div>
     );
 }

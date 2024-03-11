@@ -1,12 +1,13 @@
 import React from 'react'
+import Link from 'next/link';
 
 import { NavLinkProps } from '@/types/types';
 
 const NavLink: React.FC<NavLinkProps> = ({ href, title }) => {
   return (
-    <a href={href} title={title} className="text-pink-500 font-semibold">
+    <Link href={href} title={title} className="text-pink-500 font-semibold">
       {title}
-    </a>
+    </Link>
   );
 };
 

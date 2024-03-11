@@ -1,16 +1,14 @@
-'use-client'
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import NavLink from './NavLink.tsx';
-import { useState } from 'react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/solid';
 import MenuOverlay from './MenuOverlay.tsx';
 import Image from 'next/image.js';
-
-
+import { useUser } from '@/context/UserContext';
 
 export default function Navbar() {
   const [navbarOpen, setNavbarOpen] = useState(false);
+  const { token } = useUser();
 
   const navLinks = [
     {
@@ -53,18 +51,21 @@ export default function Navbar() {
         </div>
         <div className="menu hidden md:block md:w-auto" id="navbar">
           <ul className="flex p-4 md:p-0 md:flex-row md:space-x-8 mt-0">
-
             {navLinks.map((link, index) => (
               <li key={index}>
                 <NavLink href={link.path} title={link.title} />
               </li>
             ))}
+            {token && (
+              <li>
+                <NavLink href="/dashboard" title="ADMINISTRAR" />
+              </li>
+            )}
           </ul>
         </div>
       </div>
-      {/* @ts-ignore */}
+            {/* @ts-ignore */}
       {navbarOpen ? <MenuOverlay links={navLinks} /> : null}
-
     </nav>
   );
 }

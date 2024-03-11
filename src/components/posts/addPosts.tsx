@@ -61,13 +61,13 @@ const AddPost = () => {
       <h2 className="text-white text-lg mb-2">Agregar Publicaciones</h2>
       <input
         type="text"
-        placeholder="Title"
+        placeholder="Titulo"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
         className="bg-white text-gray-800 px-3 py-2 rounded-md w-full mb-2 focus:outline-none focus:ring focus:border-blue-300"
       />
       <textarea
-        placeholder="Content"
+        placeholder="Contenido"
         value={content}
         onChange={(e) => setContent(e.target.value)}
         className="bg-white text-gray-800 px-3 py-2 rounded-md w-full mb-2 focus:outline-none focus:ring focus:border-blue-300"
@@ -83,7 +83,7 @@ const AddPost = () => {
         onChange={(e) => setCategory(e.target.value)}
         className="bg-white text-gray-800 px-3 py-2 rounded-md w-full mb-2 focus:outline-none focus:ring focus:border-blue-300"
       >
-        <option value="">Select Category</option>
+        <option value="">Seleccionar Categoria</option>
         <option value="manicura">Manicura</option>
         <option value="pedicura">Pedicura</option>
         <option value="quiropedia">Quiropedia</option>

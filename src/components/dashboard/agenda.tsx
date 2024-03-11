@@ -32,13 +32,25 @@ const Agenda: React.FC = () => {
                     throw new Error('Error al obtener las citas');
                 }
                 const data = await response.json();
-                setAppointments(data);
+
+                // Formatear las fechas de las citas
+                const formattedAppointments = data.map((appointment: { date: string | number | Date; }) => {
+                    const formattedDate = new Date(appointment.date).toLocaleDateString('es-ES', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric',
+                    });
+                    return { ...appointment, date: formattedDate };
+                });
+
+                setAppointments(formattedAppointments);
             } catch (error) {
                 console.error('Error:', error);
             }
         };
         fetchAppointments();
     }, []);
+
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
@@ -89,15 +101,16 @@ const Agenda: React.FC = () => {
     };
 
     return (
-        <section>
-            <h2>Agenda</h2>
-            <form onSubmit={addAppointment}>
+        <section className="mx-auto max-w-4xl mt-20">
+            <h2 className="text-2xl font-bold mb-4">Agenda</h2>
+            <form onSubmit={addAppointment} className="mb-8">
                 <input
                     type="text"
                     name="name"
                     placeholder="Nombre del paciente"
                     value={newAppointment.name}
                     onChange={handleInputChange}
+                    className="input-field"
                 />
                 <input
                     type="text"
@@ -105,6 +118,7 @@ const Agenda: React.FC = () => {
                     placeholder="Tratamiento"
                     value={newAppointment.treatment}
                     onChange={handleInputChange}
+                    className="input-field"
                 />
                 <input
                     type="date"
@@ -112,6 +126,7 @@ const Agenda: React.FC = () => {
                     placeholder="Fecha"
                     value={newAppointment.date}
                     onChange={handleInputChange}
+                    className="input-field"
                 />
                 <input
                     type="text"
@@ -119,10 +134,11 @@ const Agenda: React.FC = () => {
                     placeholder="Hora"
                     value={newAppointment.time}
                     onChange={handleInputChange}
+                    className="input-field"
                 />
-                <button type="submit">Agregar cita</button>
+                <button type="submit" className="button">Agregar cita</button>
             </form>
-            <table>
+            <table className="w-full">
                 <thead>
                     <tr>
                         <th>Nombre</th>
@@ -134,18 +150,75 @@ const Agenda: React.FC = () => {
                 </thead>
                 <tbody>
                     {appointments.map(appointment => (
-                        <tr key={appointment.id}>
+                        <tr key={appointment.id} className='table-row'>
                             <td>{appointment.name}</td>
                             <td>{appointment.treatment}</td>
                             <td>{appointment.date}</td>
                             <td>{appointment.time}</td>
                             <td>
-                                <button onClick={() => deleteAppointment(appointment.id)}>Eliminar</button>
+                                <button onClick={() => deleteAppointment(appointment.id)} className="delete-button">Eliminar</button>
                             </td>
                         </tr>
                     ))}
                 </tbody>
             </table>
+            <style jsx>{`
+            .input-field {
+              width: 100%;
+              padding: 8px;
+              margin-bottom: 10px;
+              border: 1px solid #ccc;
+              border-radius: 5px;
+              outline: none;
+              background-color:#fff;
+            }
+    
+            .button {
+              background-color: #fff;
+              color: #E91E63;
+              padding: 10px 20px;
+              border: 2px solid #E91E63;
+              border-radius: 5px;
+              cursor: pointer;
+              font-weight: bold;
+              transition: background-color 0.3s, color 0.3s;
+            }
+    
+            .button:hover {
+              background-color: #E91E63;
+              color: #fff;
+            }
+    
+            .delete-button {
+              background-color: #fff;
+              color: #E91E63;
+              padding: 6px 12px;
+              border: 1px solid #E91E63;
+              border-radius: 5px;
+              cursor: pointer;
+              font-weight: bold;
+              transition: background-color 0.3s, color 0.3s;
+            }
+    
+            .delete-button:hover {
+              background-color: #E91E63;
+              color: #fff;
+            }
+
+            .table-row {
+                width: 100%;
+                padding: 8px;
+                margin-bottom: 10px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                outline: none;
+                background-color: #fff;
+            }
+            
+            .table-row td {
+                padding: 8px;
+            }
+          `}</style>
         </section>
     );
 };
