@@ -24,12 +24,18 @@ export default function Navbar() {
   return (
     <nav className="fixed mx-auto border border-[#33353F] top-0 left-0 right-0 z-10 bg-[#fff] bg-opacity-100">
       <div className="flex container lg:py-4 flex-wrap items-center justify-between mx-auto px-4 py-2">
-        <Link href={'/'} className="text-2xl md:text-5xl text-black font-semibold flex items-center justify-center">
+        <Link href={'/'} className="text-2xl md:text-5xl text-black font-semibold flex items-center justify-between">
           <Image className="mx-auto" width={70} height={70} src="/images/logo.webp" alt="Logo" />
         </Link>
         <Link href={"/"} className='flex'>
-          <Image src={"/images/babyfoot-2.gif"} width={100} height={100} alt='Emoji Nails spa' />
-          <Image className='hidden lg:block items-center' width={200} height={200} src="/images/queens-nails-spa.gif" alt='Queens Nails Spa' />
+          <video width={100} height={190} autoPlay loop muted>
+            <source src="/images/babyfoot2.webm" type="video/webm" />
+            Your browser does not support the video tag.
+          </video>
+          <video width={200} height={200} autoPlay loop muted>
+            <source src="/images/queens-nails-spa.webm" type="video/webm" />
+            Your browser does not support the video tag.
+          </video>
         </Link>
 
         <div className="mobile-menu block md:hidden">
@@ -53,7 +59,7 @@ export default function Navbar() {
           <ul className="flex p-4 md:p-0 md:flex-row md:space-x-8 mt-0">
             {navLinks.map((link, index) => (
               <li key={index}>
-                <NavLink href={link.path} title={link.title}/>
+                <NavLink href={link.path} title={link.title} />
               </li>
             ))}
             {token && (
@@ -64,7 +70,7 @@ export default function Navbar() {
           </ul>
         </div>
       </div>
-            {/* @ts-ignore */}
+      {/* @ts-ignore */}
       {navbarOpen ? <MenuOverlay links={navLinks} /> : null}
 
     </nav>

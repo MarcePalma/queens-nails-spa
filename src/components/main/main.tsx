@@ -31,7 +31,7 @@ export default function Main() {
               />
 
               <div className="absolute inset-0 flex flex-col items-start justify-end p-6">
-                <h3 className="text-xl  text-pink-500 font-semibold">Manicura</h3>
+                <h2 className="text-xl  text-pink-500 font-semibold">Manicura</h2>
               </div>
             </a>
           </li>
@@ -65,7 +65,7 @@ export default function Main() {
               />
 
               <div className="absolute inset-0 flex flex-col items-start justify-end p-6">
-                <h3 className="text-xl font-medium text-white">Quiropedia</h3>
+                <h4 className="text-xl font-medium text-white">Quiropedia</h4>
                 <Link
                   href={"/turnos"}
                   className="mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium uppercase tracking-wide text-white"
