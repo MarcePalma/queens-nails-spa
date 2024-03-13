@@ -28,7 +28,7 @@ export default function Navbar() {
           <Image className="mx-auto" width={70} height={70} src="/images/logo.webp" alt="Logo" />
         </Link>
         <Link href={"/"} className='flex'>
-          <Image src={"/images/babyfoot.gif"} width={100} height={100} alt='Emoji Nails spa' />
+          <Image src={"/images/babyfoot-2.gif"} width={100} height={100} alt='Emoji Nails spa' />
           <Image className='hidden lg:block items-center' width={200} height={200} src="/images/queens-nails-spa.gif" alt='Queens Nails Spa' />
         </Link>
 

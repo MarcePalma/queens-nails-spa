@@ -42,7 +42,7 @@ const CalendarDashboard: React.FC<CalendarDashboardProps> = ({ onSelectDate }) =
     };
 
     return (
-        <div className="calendar">
+        <section className="calendar">
             <h1 className="text-white mb-4 text-4xl sm:text-5xl lg:text-3xl lg:leading-normal font-extrabold">
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-pink-600 z-10">
                     Selecciona un día y un horario y agregalos al calendario!
@@ -105,7 +105,7 @@ const CalendarDashboard: React.FC<CalendarDashboardProps> = ({ onSelectDate }) =
                     color: #fff;
                 }
             `}</style>
-        </div>
+        </section>
     );
 };
 

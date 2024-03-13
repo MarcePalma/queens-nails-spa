@@ -48,7 +48,6 @@ export default function Dashboard() {
                 throw new Error('Error al agregar el turno.');
             }
 
-            // Mostrar el componente de éxito
             setShowSuccess(true);
             setTimeout(() => {
                 setShowSuccess(false);
