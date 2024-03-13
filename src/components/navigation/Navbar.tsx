@@ -28,7 +28,7 @@ export default function Navbar() {
           <Image className="mx-auto" width={70} height={70} src="/images/logo.webp" alt="Logo" />
         </Link>
         <Link href={"/"} className='flex'>
-          <video width={100} height={190} autoPlay loop muted>
+          <video width={100} height={190} autoPlay loop muted className="hidden md:block">
             <source src="/images/babyfoot2.webm" type="video/webm" />
             Your browser does not support the video tag.
           </video>
