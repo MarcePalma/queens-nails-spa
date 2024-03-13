@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Post } from "@/types/types";
 import Link from "next/link";
+import Image from "next/image";
 
 const PostListForDashboard = () => {
   const [posts, setPosts] = useState<Post[]>([]);
 
   useEffect(() => {
-    // Fetch de datos desde la API
     const fetchPosts = async () => {
       try {
         const response = await fetch("/api/posts/route");
@@ -23,7 +23,6 @@ const PostListForDashboard = () => {
     fetchPosts();
   }, []);
 
-  // Función para eliminar un post por su ID
   const deletePost = async (postId: number) => {
     try {
       const response = await fetch(`/api/posts/deletePost/${postId}`, {
@@ -32,7 +31,6 @@ const PostListForDashboard = () => {
       if (!response.ok) {
         throw new Error("Error deleting post");
       }
-      // Actualizar la lista de posts después de eliminar
       setPosts(posts.filter(post => post.id !== postId));
     } catch (error) {
       console.error("Error deleting post:", error);
@@ -45,7 +43,7 @@ const PostListForDashboard = () => {
       {posts.map((post) => (
         <div key={post.id} className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-pink-400 dark:border-pink-700 mx-auto">
           <a href="#">
-            <img className="rounded-t-lg" src={post.image} alt="" />
+            <Image width={1000} height={1000} className="rounded-t-lg" src={post.image} alt="" />
           </a>
           <div className="p-5 text-center">
             <Link href="#">

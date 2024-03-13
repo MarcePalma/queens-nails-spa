@@ -5,7 +5,7 @@ import AddPost from "@/components/posts/addPosts";
 import PostListForDashboard from "@/components/posts/PostListForDashboard";
 import { Post } from "@/types/types";
 import { useUser } from "@/context/UserContext";
-import Link from "next/link";
+import AccessDenied from "@/components/accesdenied/AccessDenied";
 
 const Index = () => {
   const { token } = useUser()
@@ -16,7 +16,7 @@ const Index = () => {
   };
 
   if (!token) {
-    return <h1>Acceso denegado. Por favor inicia sesion para acceder <Link className='font-bold' href={"/"}>VOLVER</Link></h1>
+    return <AccessDenied/>
   }
 
   return (
