@@ -15,7 +15,7 @@ export default function Index() {
         return <AccessDenied />
     }
     return (
-        <section className='p-24'>
+        <section className='py-24'>
             <Navbar />
             <Dashboard />
         </section>

@@ -65,7 +65,7 @@ export default function Dashboard() {
     };
 
     return (
-        <div className="flex w-screen h-screen flex-col justify-between border-e bg-#121212 p-24">
+        <div className="flex w-screen h-screen flex-col justify-between border-e bg-#121212 py-24 p-4">
             <div>
                 <span className="grid h-10 w-32 place-content-center rounded-lg bg-#121212 text-xs text-gray-600">
                     <Image src={"/images/logo.webp"} width={70} height={70} alt='Logo' />
@@ -158,7 +158,7 @@ export default function Dashboard() {
                     <div role="alert" className="rounded border-s-4 border-red-500 bg-red-50 p-4">
                         <strong className="block font-medium text-red-800">Algo salio mal</strong>
                         <p className="mt-2 text-sm text-red-700">
-                            Algo salio mal y no se ah agendado el turno!
+                            Algo salio mal y el turno no ah sido agendado!
                         </p>
                     </div>
                 )}
