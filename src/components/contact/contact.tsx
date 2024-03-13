@@ -11,11 +11,11 @@ export default function EmailSection() {
     return (
         <section className="grid md:grid-cols-2 my-12 md:my-12 gap-4 relative overflow-hidden py-20">
             <div className="flex flex-col px-6 py-8 space-y-6 rounded-sm sm:p-8 lg:p-12 lg:w-1/2 xl:w-2/5">
-                <h5 className="text-white mb-4 text-4xl sm:text-5xl lg:text-4xl lg:leading-normal font-extrabold">
+                <h1 className="text-white mb-4 text-4xl sm:text-5xl lg:text-4xl lg:leading-normal font-extrabold">
                     <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-pink-600 z-10">
                         CONECTEMOS
                     </span>
-                </h5>
+                </h1>
                 <p className="text-[#000] mb-4 max-w-md font-bold">
                     En nuestro comercio, nos apasiona brindarte la mejor experiencia posible.
                     Si tienes alguna pregunta, duda o simplemente deseas compartir tus ideas con nosotros, no dudes en contactarnos. Estamos aquí para escucharte y trabajar juntos para satisfacer tus necesidades.

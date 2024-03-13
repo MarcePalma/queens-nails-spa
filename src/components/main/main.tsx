@@ -66,9 +66,9 @@ export default function Main() {
 
               <div className="absolute inset-0 flex flex-col items-start justify-end p-6">
                 <h4 className="text-xl font-medium text-white">Quiropedia</h4>
-                <Link 
+                <Link
                   href={"/turnos"}
-                  className="button"
+                  className="bg-pink-500 hover:bg-pink-600 text-white font-medium py-2.5 px-5 rounded-lg w-full"
                 >
                   Agenda tu cita!
                 </Link>
@@ -77,23 +77,6 @@ export default function Main() {
           </li>
         </ul>
       </div>
-      <style jsx>{`
-            .button {
-              background-color: #fff;
-              color: #E91E63;
-              padding: 10px 20px;
-              border: 2px solid #E91E63;
-              border-radius: 5px;
-              cursor: pointer;
-              font-weight: bold;
-              transition: background-color 0.3s, color 0.3s;
-            }
-    
-            .button:hover {
-              background-color: #E91E63;
-              color: #fff;
-            }
-          `}</style>
     </section>
   )
 }
