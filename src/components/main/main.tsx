@@ -68,7 +68,7 @@ export default function Main() {
                 <h4 className="text-xl font-medium text-white">Quiropedia</h4>
                 <Link
                   href={"/turnos"}
-                  className="bg-pink-500 hover:bg-pink-600 text-white font-medium py-2.5 px-5 rounded-lg w-full"
+                  className="bg-pink-500 hover:bg-pink-600 text-white font-medium py-2.5 px-5 rounded-lg"
                 >
                   Agenda tu cita!
                 </Link>
