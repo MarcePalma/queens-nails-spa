@@ -34,14 +34,14 @@ export default function Navbar() {
 
         <div className="mobile-menu block md:hidden">
           {!navbarOpen ? (
-            <button
+            <button name='Boton de Menu'
               onClick={() => setNavbarOpen(true)}
               className="flex items-center px-3 py-2 border rounded border-slate-200 text-black hover:text-pink-500 hover:border-white"
             >
               <Bars3Icon className="h-5 w-5" />
             </button>
           ) : (
-            <button
+            <button name='Boton de Menu'
               onClick={() => setNavbarOpen(false)}
               className="flex items-center px-3 py-2 border rounded border-slate-200 text-black hover:text-pink-500 hover:border-white"
             >
