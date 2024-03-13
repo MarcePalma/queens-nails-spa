@@ -37,7 +37,7 @@ export default function Horarios() {
                 </div>
                 <div className="lg:w-1/2 xl:w-3/5 dark:bg-pink-500">
                     <div className="flex items-center justify-center p-4 md:p-8 lg:p-12">
-                        <Image alt='foto de prueba' src="/images/example24.jpeg" width={500} height={300} className="rounded-lg shadow-lg bg-pink-900" />
+                        <Image alt='foto de prueba' src="/images/example24.webp" width={500} height={300} className="rounded-lg shadow-lg bg-pink-900" />
                     </div>
                 </div>
             </div>

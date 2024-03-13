@@ -37,8 +37,8 @@ const CalendarDashboard: React.FC<CalendarDashboardProps> = ({ onSelectDate }) =
 
     const handleDateClick = (date: Date) => {
         setSelectedAppointment(date);
-        onSelectDate(date); // Llamar a la función onSelectDate con la fecha seleccionada
-        console.log('Fecha seleccionada en CalendarDashboard:', date); // Agregamos un console.log() para verificar la fecha seleccionada
+        onSelectDate(date); 
+        console.log('Fecha seleccionada en CalendarDashboard:', date);
     };
 
     return (
