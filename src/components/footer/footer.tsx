@@ -13,7 +13,7 @@ export default function Footer() {
                     <Image
                         width={70}
                         height={70}
-                        src="/images/LOGO.webp"
+                        src="/images/logo.webp"
                         alt="Logo"
                     />
                     
