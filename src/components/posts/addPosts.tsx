@@ -57,7 +57,7 @@ const AddPost = () => {
   };
 
   return (
-    <div className="bg-pink-500 p-4 rounded-lg shadow-lg mx-auto max-w-md mt-20">
+    <div className="bg-pink-500 p-4 rounded-lg shadow-lg mx-auto max-w-md mt-20 px-8">
       <h2 className="text-white text-lg mb-2">Agregar Publicaciones</h2>
       <input
         type="text"

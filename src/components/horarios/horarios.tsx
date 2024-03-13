@@ -14,24 +14,25 @@ export default function Horarios() {
                                     HORARIOS DE ATENCION
                                 </span>
                             </h1>
-                            <p className="text-lg font-medium leadi">De Lunes a Sabados:</p>
+                            <p className="text-lg font-medium">De Lunes a Sabados:</p>
                             <p className="leadi">de 12:00 a 19:00</p>
                         </div>
                     </div>
                     <div className="flex space-x-2 sm:space-x-4">
                         <div className="space-y-2">
-                            <p className="text-lg font-medium leadi">Visita nuestro Calendario!</p>
-                            <p className="leadi">si quieres saber mas sobre los horarios o dias disponibles puedes visitar el calendario presionando <Link href="/turnos" className='text-white font-semibold'>AQUI!</Link></p>
+                            <p className="text-lg font-medium">Visita nuestro Calendario!</p>
+                            <p className="leadi">Si quieres saber más sobre los horarios o días disponibles, puedes visitar el calendario presionando <Link href="/turnos" className='text-white font-bold'>AQUÍ!</Link></p>
                         </div>
                     </div>
                     <div className="flex space-x-2 sm:space-x-4">
                         <div className="space-y-2">
-                            <p className="text-lg font-medium leadi">Instagram</p>
-                            <p className="leadi">Ante cualquier consulta puedes visitar nuestra pagina de Instagram
+                            <p className="text-lg font-medium">Instagram</p>
+                            <p className="leadi">Ante cualquier consulta, puedes visitar nuestra página de Instagram para conocer nuestras últimas promociones, novedades y más:
                                 <Link target='_blank' href={"https://www.instagram.com/t.r_nails_spa/"}>
-                                    <Image src={"/images/instagram-icon.webp"} width={70} height={70} alt='Instagram-logo' />
+                                    <Image className='bg-clip' src={"/images/instagram-icon.webp"} width={70} height={70} alt='Instagram-logo' />
                                 </Link>
                             </p>
+                            <p className="leadi">¡Síguenos en Instagram para estar al tanto de todo lo que tenemos para ofrecerte!</p>
                         </div>
                     </div>
                 </div>
@@ -42,5 +43,7 @@ export default function Horarios() {
                 </div>
             </div>
         </section>
+
+
     )
 }

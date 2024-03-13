@@ -4,7 +4,7 @@ import PostList from '@/components/posts/PostList'
 
 export default function index() {
   return (
-    <section  className="p-24">
+    <section className='py-24'>
       <Navbar/>
 
       <PostList/>
