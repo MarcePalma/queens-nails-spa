@@ -9,10 +9,10 @@ interface CheckoutFormProps {
         payInPerson: boolean; 
         treatment: string;
         selectedDate: string;
-        selectedTime: string; // Agrega la propiedad selectedTime aquí
+        selectedTime: string;
     }) => void;
     selectedDate: string;
-    selectedTime: string; // Añade selectedTime aquí también
+    selectedTime: string;
 }
 
 const CheckoutForm: React.FC<CheckoutFormProps> = ({ onConfirm, selectedDate, selectedTime }) => {
@@ -40,10 +40,8 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ onConfirm, selectedDate, se
             return;
         }
 
-        // Restablecer errores
         setErrors({});
 
-        // Continuar con la confirmación del turno
         onConfirm({ name, email, phoneNumber, payInPerson, treatment: selectedTreatment, selectedDate, selectedTime });
     };
 

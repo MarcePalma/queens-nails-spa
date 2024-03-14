@@ -11,9 +11,13 @@ const CheckoutPage = () => {
 
     // Obtenemos la información del turno desde sessionStorage
     const [selectedAppointment, setSelectedAppointment] = useState(() => {
-        const storedScheduleId = sessionStorage.getItem('scheduleId');
-        const scheduleId = storedScheduleId ? parseInt(storedScheduleId) : -1;
-        return { date: null, time: null, scheduleId };
+        if (typeof window !== 'undefined') {
+            const storedScheduleId = sessionStorage.getItem('scheduleId');
+            const scheduleId = storedScheduleId ? parseInt(storedScheduleId) : -1;
+            return { date: null, time: null, scheduleId };
+        } else {
+            return { date: null, time: null, scheduleId: -1 };
+        }
     });
 
     useEffect(() => {
