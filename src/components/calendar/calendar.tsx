@@ -1,24 +1,37 @@
 "use-client"
+
 import React, { useState, useRef, useEffect } from "react";
 import { useRouter } from 'next/navigation'
-import { addMonths, format, isSunday, isBefore, startOfMonth, endOfMonth, isSameDay, isSameMonth } from "date-fns";
+import { addMonths, format, isSunday, isBefore, startOfMonth, endOfMonth, isSameDay } from "date-fns";
 import { Locale } from "date-fns";
 import { es as esLocale } from "date-fns/locale";
+import { stringify } from "querystring";
 
 interface Appointment {
   date: Date | null;
   time: string | null;
+  scheduleId: number;
+}
+
+interface ScheduleDataItem {
+  scheduleId: number;
+  times: string[];
+}
+
+interface ScheduleData {
+  [date: string]: ScheduleDataItem[];
 }
 
 interface CalendarProps { }
 
 const Calendar: React.FC<CalendarProps> = () => {
+
   const Router = useRouter()
   const currentDate = new Date();
-  const [selectedAppointment, setSelectedAppointment] = useState<Appointment>({ date: null, time: null });
+  const [selectedAppointment, setSelectedAppointment] = useState<Appointment>({ date: null, time: null, scheduleId: -1 });
   const [availableTimes, setAvailableTimes] = useState<string[]>([]);
   const selectTimeRef = useRef<HTMLDivElement>(null);
-  const [scheduleData, setScheduleData] = useState<{ [date: string]: string[] }>({});
+  const [scheduleData, setScheduleData] = useState<ScheduleData>({});
 
   useEffect(() => {
     const fetchData = async () => {
@@ -29,15 +42,14 @@ const Calendar: React.FC<CalendarProps> = () => {
         }
         const data = await response.json();
 
-        const formattedData = data.reduce((acc: { [date: string]: string[] }, appointment: { date: string; time: string }) => {
+        const formattedData = data.reduce((acc: { [date: string]: { scheduleId: number, times: string[] }[] }, appointment: { date: string; time: string, id: number }) => {
           const dateKey = formatDateForBackend(appointment.date);
           if (!acc[dateKey]) {
             acc[dateKey] = [];
           }
-          acc[dateKey].push(appointment.time);
+          acc[dateKey].push({ scheduleId: appointment.id, times: [appointment.time] });
           return acc;
         }, {});
-
 
         setScheduleData(formattedData);
       } catch (error) {
@@ -80,23 +92,50 @@ const Calendar: React.FC<CalendarProps> = () => {
   };
 
   const handleDateClick = (date: Date) => {
-    setSelectedAppointment(prevAppointment => ({ ...prevAppointment, date }));
-    const times = scheduleData[format(date, "yyyy-MM-dd")];
-    setAvailableTimes(times || []);
+    const formattedDate = format(date, "yyyy-MM-dd");
+    const timesData = scheduleData[formattedDate];
+
+    if (timesData) {
+      const times = timesData.reduce((acc: string[], item) => {
+        acc.push(...item.times);
+        return acc;
+      }, []);
+      setAvailableTimes(times);
+
+      // Obtener el scheduleId del primer elemento de timesData (asumiendo que solo hay uno por fecha)
+      const scheduleId = timesData[0].scheduleId;
+      setSelectedAppointment({ date, time: null, scheduleId }); // Actualizar el ID del turno seleccionado
+      sessionStorage.setItem('scheduleId', scheduleId.toString()); // Guardar en sessionStorage
+    } else {
+      setAvailableTimes([]);
+    }
+
     if (selectTimeRef.current) {
       selectTimeRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   };
 
   const handleTimeSelect = (time: string) => {
-    setSelectedAppointment(prevAppointment => ({ ...prevAppointment, time }));
+    setSelectedAppointment(prevAppointment => ({
+      ...prevAppointment,
+      time,
+    }));
   };
 
   const handleCheckout = () => {
-    console.log("Fecha seleccionada:", selectedAppointment.date);
-    console.log("Hora seleccionada:", selectedAppointment.time);
-    Router.push('/checkout')
+    if (selectedAppointment.date && selectedAppointment.time) {
+      const queryParams = {
+        date: selectedAppointment.date.toISOString(),
+        time: selectedAppointment.time || '',
+        scheduleId: selectedAppointment.scheduleId.toString(),
+      };
+
+      Router.push(`/checkout?${stringify(queryParams)}`);
+    } else {
+      console.error("Error: No se ha seleccionado una fecha y hora");
+    }
   };
+
 
   const isAppointmentSelected = selectedAppointment.date !== null && selectedAppointment.time !== null;
 
