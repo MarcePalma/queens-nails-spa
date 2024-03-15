@@ -24,4 +24,3 @@ export interface Appointment {
     updatedAt: Date;
     time: string;
   }
-  

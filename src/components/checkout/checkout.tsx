@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
-import { format } from 'date-fns';
 
 interface CheckoutFormProps {
-    onConfirm: (formData: { 
-        name: string; 
-        email: string; 
-        phoneNumber: string; 
-        payInPerson: boolean; 
+    onConfirm: (formData: {
+        name: string;
+        email: string;
+        phoneNumber: string;
+        payInPerson: boolean;
         treatment: string;
         selectedDate: string;
         selectedTime: string;
@@ -22,6 +21,12 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ onConfirm, selectedDate, se
     const [payInPerson, setPayInPerson] = useState(false);
     const [selectedTreatment, setSelectedTreatment] = useState('');
     const [errors, setErrors] = useState<{ [key: string]: string }>({});
+
+    const format = (date: Date, dateFormat: string) => {
+        const options: Intl.DateTimeFormatOptions = { day: '2-digit', month: '2-digit', year: 'numeric' };
+        const formattedDate = date.toLocaleDateString(undefined, options);
+        return formattedDate;
+    };
 
     const handleConfirm = () => {
         if (!validateEmail(email)) {
