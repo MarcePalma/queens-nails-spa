@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import CheckoutForm from '@/components/checkout/checkout';
+import emailjs from 'emailjs-com';
 
 const CheckoutPage = () => {
     const router = useRouter();
@@ -8,17 +9,18 @@ const CheckoutPage = () => {
     const time = typeof router.query.time === 'string' ? router.query.time : '';
     const [confirmationMessage, setConfirmationMessage] = useState('');
     const [turnCreated, setTurnCreated] = useState(false);
-
-    // Obtenemos la información del turno desde sessionStorage
-    const [selectedAppointment, setSelectedAppointment] = useState(() => {
-        if (typeof window !== 'undefined') {
-            const storedScheduleId = sessionStorage.getItem('scheduleId');
-            const scheduleId = storedScheduleId ? parseInt(storedScheduleId) : -1;
-            return { date: null, time: null, scheduleId };
-        } else {
-            return { date: null, time: null, scheduleId: -1 };
-        }
+    const [selectedAppointment, setSelectedAppointment] = useState({
+        date: null,
+        time: null,
+        scheduleId: -1
     });
+    const [customerEmail, setCustomerEmail] = useState('');
+
+    useEffect(() => {
+        if (turnCreated) {
+            sendConfirmationEmail(); // Envía correo de confirmación si se ha creado el turno correctamente
+        }
+    }, [turnCreated]);
 
     useEffect(() => {
         // Verificamos si hay un scheduleId almacenado en sessionStorage y lo asignamos al estado
@@ -28,7 +30,39 @@ const CheckoutPage = () => {
         }
     }, []);
 
-    const handleConfirmTurn = (formData: { name: any; treatment: any; }) => {
+    const sendConfirmationEmail = () => {
+        emailjs.send('service_id', 'template_id_cliente', {
+            to_email: customerEmail,
+            from_email:"marcelobaltazarpalma@gmail.com",
+            from_name: 'Tatiana Ramirez',
+            subject: 'Confirmacion del Turno',
+            message: 'Esto es para avisar que se confirmo el turno de prueba de momento'
+        }, 'user_id')
+            .then((response) => {
+                console.log('Correo de confirmación enviado al cliente:', response);
+            })
+            .catch((error) => {
+                console.error('Error al enviar correo de confirmación al cliente:', error);
+            });
+
+        // Envía correo de confirmación al propietario del sitio
+        emailjs.send('service_id', 'template_id_propietario', {
+            to_email: 'correo_del_propietario',
+            from_name: 'Nombre_del_remitente',
+            subject: 'Asunto_del_correo',
+            message: 'Mensaje_del_correo'
+        }, 'user_id')
+            .then((response) => {
+                console.log('Correo de confirmación enviado al propietario:', response);
+            })
+            .catch((error) => {
+                console.error('Error al enviar correo de confirmación al propietario:', error);
+            });
+    };
+
+    const handleConfirmTurn = (formData: { name: any; treatment: any; email: any; }) => {
+        const { name, treatment, email } = formData;
+        setCustomerEmail(email);
         const newAppointment = {
             id: 0,
             name: formData.name,
@@ -40,9 +74,6 @@ const CheckoutPage = () => {
             time: time || '',
             scheduleId: selectedAppointment.scheduleId,
         };
-
-
-
 
         console.log('Nueva cita:', newAppointment);
         fetch('/api/appointments/create/route', {
@@ -91,7 +122,6 @@ const CheckoutPage = () => {
             <h1>Proceso de Pago</h1>
             <p>Fecha seleccionada: {date}</p>
             <p>Hora seleccionada: {time}</p>
-            {/* @ts-ignore */}
             <CheckoutForm onConfirm={handleConfirmTurn} selectedDate={date} selectedTime={time} />
             {confirmationMessage && <p>{confirmationMessage}</p>}
         </div>
