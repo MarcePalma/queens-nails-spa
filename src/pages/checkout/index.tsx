@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import CheckoutForm from '@/components/checkout/checkout';
 import emailjs from 'emailjs-com';
+import BackButton from '@/components/buttons/buttons';
 
 const CheckoutPage = () => {
     const router = useRouter();
@@ -33,7 +34,7 @@ const CheckoutPage = () => {
     const sendConfirmationEmail = () => {
         emailjs.send('service_id', 'template_id_cliente', {
             to_email: customerEmail,
-            from_email:"marcelobaltazarpalma@gmail.com",
+            from_email: "marcelobaltazarpalma@gmail.com",
             from_name: 'Tatiana Ramirez',
             subject: 'Confirmacion del Turno',
             message: 'Esto es para avisar que se confirmo el turno de prueba de momento'
@@ -124,6 +125,8 @@ const CheckoutPage = () => {
             <p>Hora seleccionada: {time}</p>
             <CheckoutForm onConfirm={handleConfirmTurn} selectedDate={date} selectedTime={time} />
             {confirmationMessage && <p>{confirmationMessage}</p>}
+            {/* @ts-ignore */}
+            <BackButton path="turnos" />
         </div>
     );
 };

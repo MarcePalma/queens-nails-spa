@@ -6,6 +6,7 @@ import PostListForDashboard from "@/components/posts/PostListForDashboard";
 import { Post } from "@/types/types";
 import { useUser } from "@/context/UserContext";
 import AccessDenied from "@/components/accesdenied/AccessDenied";
+import BackButton from "@/components/buttons/buttons";
 
 const Index = () => {
   const { token } = useUser()
@@ -16,7 +17,7 @@ const Index = () => {
   };
 
   if (!token) {
-    return <AccessDenied/>
+    return <AccessDenied />
   }
 
   return (
@@ -25,6 +26,8 @@ const Index = () => {
       <h1 className="text-white">Agregar Publicaciones</h1>
       {/* @ts-ignore */}
       <AddPost onAddPost={handleAddPost} />
+      {/* @ts-ignore */}
+      <BackButton path="/dashboard" />
       <PostListForDashboard />
     </div>
   );

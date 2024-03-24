@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { useUser } from '@/context/UserContext';
 import Navbar from '@/components/navigation/Navbar';
+import BackButton from '@/components/buttons/buttons';
 
 const LoginPage = () => {
     const [token, setToken] = useState('');
@@ -51,6 +52,8 @@ const LoginPage = () => {
                     <button className="bg-white text-pink-500 px-4 py-2 rounded-md text-lg font-semibold focus:outline-none hover:bg-gray-200" type="submit">Ingresar</button>
                 </form>
             </div>
+            {/* @ts-ignore */}
+            <BackButton path="/" />
         </div>
 
     );
